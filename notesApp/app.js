@@ -12,13 +12,27 @@ console.log('Yargs:',argv);
 console.log("Command:",command);
 
 if( command === 'add'){
-  notes.addNote(argv.title,argv.body);
+  var note = notes.addNote(argv.title,argv.body);
+  if(note){
+    console.log('Note added succesfully');
+    notes.logNote(note);
+  }
+  else{
+    console.log('duplicate note cannot be added');
+  }
 }
 else if( command === 'list'){
   notes.getAll();
 }
 else if( command === 'read'){
-  notes.getNote(argv.title);
+  var note = notes.getNote(argv.title);
+  if(note){
+    console.log("Note Found ");
+    notes.logNote(note);
+  }
+  else{
+    console.log("Note not found");
+  }
 }
 else if( command === 'remove'){
   notes.removeNote(argv.title);
