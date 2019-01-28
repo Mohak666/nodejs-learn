@@ -44,7 +44,14 @@ var getNote = (title) => {
   return requiredNotes[0];
 };
 var removeNote = (title) => {
-  console.log('removing note: '+title);
+  var notes = fetchNotes();
+  var filteredNotes = notes.filter((note)=> note.title !== title);
+  saveNotes(filteredNotes);
+
+  if(notes.length !== filteredNotes.length)
+    return true;
+  else
+    return false;
 };
 var logNote = (note) => {
   console.log("---");
