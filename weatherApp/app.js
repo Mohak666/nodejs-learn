@@ -1,6 +1,6 @@
 const request = require('request');
 const yargs = require('yargs');
-
+const fs = require('fs');
 const argv = yargs
             .options({
               a: {
@@ -26,8 +26,16 @@ request({
   url: requestURL,
   json: true,
 }, (error,response,body) => {
-    // console.log(JSON.stringify(error, undefined, 2));
-    // console.log(`Address: ${body.results[0].locations[0].street},${body.results[0].locations[0].adminArea5},${body.results[0].locations[0].postalCode}`);
-    console.log(`Latitude: ${body.results[0].locations[0].latLng.lat}`);
-    console.log(`Longitude: ${body.results[0].locations[0].latLng.lng}`);
+    // fs.writeFileSync('abc.json',JSON.stringify(response));
+
+    if(error){
+      console.log('unable to connect');
+    }
+    else if(!body){
+      console.log('unable to find address');
+    }
+    else if(body.info.statuscode === 0){
+      console.log(`Latitude: ${body.results[0].locations[0].latLng.lat}`);
+      console.log(`Longitude: ${body.results[0].locations[0].latLng.lng}`);
+    }
   });
