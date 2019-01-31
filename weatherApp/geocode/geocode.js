@@ -15,7 +15,7 @@ var geocodeAddress = (address, callback ) => {
       if(error){
         callback('unable to connect');
       }
-      else if(!body){
+      else if(!body || !body.info){
         callback('unable to find address');
       }
       else if(body.info.statuscode === 0){
