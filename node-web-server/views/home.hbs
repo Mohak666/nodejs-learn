@@ -5,10 +5,11 @@
     <title>{{pageTitle}}</title>
   </head>
   <body>
-    <h1>{{pageTitle}}</h1>
-    <p>{{welcomeMessage}}</p>
-    <footer>
-      <p>Copyright {{currentYear}}</p>
-    </footer>
+    {{> header}}
+    <p>{{screamIt welcomeMessage}}</p>
+    <!-- screamIt is a function, welcomeMessage is argument to the function
+    screamIt is a helper btw
+    -->
+    {{> footer}}
   </body>
 </html>
